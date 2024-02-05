@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'testatlasai'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3910A506EFEB4B428EA55D09AB734057 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9F8DDC300B7448369020E513EB59A863 }}

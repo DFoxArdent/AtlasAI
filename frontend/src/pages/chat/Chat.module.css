@@ -20,12 +20,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: radial-gradient(108.78% 108.78% at 50.02% 19.78%, #FFFFFF 57.29%, #EEF6FE 100%);
+    background: url('../../assets/Ardent Background.png') no-repeat center center;
+    background-size: cover; /* Adjust as needed */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14), 0px 0px 2px rgba(0, 0, 0, 0.12);
     border-radius: 8px;
     overflow-y: auto;
     max-height: calc(100vh - 100px);
 }
+
 
 .chatEmptyState {
     flex-grow: 1;
@@ -34,6 +36,7 @@
     justify-content: center;
     align-items: center;
 }
+
 
 .chatEmptyStateTitle {
     font-style: normal;
@@ -61,8 +64,8 @@
 }
 
 .chatIcon {
-    height: 62px;
-    width: 62px;
+    height: 200px;
+    width: 200px;
 }
 
 .chatMessageStream {
@@ -85,7 +88,7 @@
 
 .chatMessageUserMessage {
     padding: 20px;
-    background: #EDF5FD;
+    background: #E2FDF5;
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14), 0px 0px 2px rgba(0, 0, 0, 0.12);
     font-style: normal;
@@ -93,18 +96,28 @@
     font-size: 14px;
     line-height: 22px;
     color: #242424;
+    flex: none;
     order: 0;
     flex-grow: 0;
     white-space: pre-wrap;
     word-wrap: break-word;
-    max-width: 80%;
+    max-width: 800px;
+    border: 2px solid #031C31; /* Added border */
 }
 
-.chatMessageGpt {
-    margin-bottom: 12px;
-    max-width: 80%;
-    display: flex;
+.chatMessageGpt::before {
+    content: ''; /* Necessary for the pseudo-element to work */
+    display: inline-block;
+    width: 20px; /* Adjust based on your icon's size */
+    height: 20px; /* Adjust based on your icon's size */
+    background-image: url('../../assets/Ardent A.svg'); /* Path to your icon */
+    background-size: contain; /* Ensure the icon fits within the dimensions */
+    background-repeat: no-repeat;
+    margin-right: 10px; /* Adjust the spacing between the icon and the message */
+    /* Optionally adjust vertical alignment if needed */
+    align-self: center;
 }
+
 
 .chatMessageError {
     padding: 20px;
@@ -154,10 +167,27 @@
     height: 40px;
     left: 7px;
     top: 13px;
-    color: #FFFFFF;
+    color: #153754;
+    border: 1px solid #031C31;
     border-radius: 4px;
     z-index: 1;
 }
+
+    .clearChatBroom:hover::after {
+        content: "Click here to clear the chat"; /* Replace 'Tooltip Text' with your desired text */
+        position: absolute;
+        bottom: -30px; /* Adjust this value for vertical positioning */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        color: #000;
+        padding: 5px 10px;
+        border-radius: 4px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
+        z-index: 2;
+    }
+
 
 .clearChatBroomNoCosmos {
     box-sizing: border-box;
@@ -170,10 +200,26 @@
     height: 40px;
     left: 7px;
     top: 66px;
-    color: #FFFFFF;
+    color: #153754;
+    border: 1px solid #031C31;
     border-radius: 4px;
     z-index: 1;
 }
+
+    .clearChatBroomNoCosmos:hover::after {
+        content: "Click here to clear the chat"; /* Replace 'Tooltip Text' with your desired text */
+        position: absolute;
+        bottom: -30px; /* Adjust this value for vertical positioning */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        color: #000;
+        padding: 5px 10px;
+        border-radius: 4px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
+        z-index: 2;
+    }
 
 .newChatIcon {
     box-sizing: border-box;
@@ -186,10 +232,27 @@
     height: 40px;
     left: 7px;
     top: 66px;
-    color: #FFFFFF;
+    color: #00DA96;
+    border: 1px solid #031C31;
     border-radius: 4px;
     z-index: 1;
 }
+
+    .newChatIcon:hover::after {
+        content: "Click here to start a new chat"; /* Replace 'Tooltip Text' with your desired text */
+        position: absolute;
+        bottom: -30px; /* Adjust this value for vertical positioning */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        color: #000;
+        padding: 5px 10px;
+        border-radius: 4px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
+        z-index: 2;
+    }
+
 
 .stopGeneratingContainer {
     box-sizing: border-box;
@@ -204,7 +267,7 @@
     height: 32px;
     left: calc(50% - 161px/2 + 25.8px);
     bottom: 116px;
-    border: 1px solid #D1D1D1;
+    border: 1px solid #00DA96;
     border-radius: 16px;
 }
 
@@ -219,7 +282,7 @@
     height: 20px;
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     display: flex;
     align-items: center;
@@ -235,7 +298,7 @@
     align-items: flex-start;
     padding: 16px 16px;
     gap: 8px;
-    background: #FFFFFF;
+    background: #E2FDF5;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14), 0px 0px 2px rgba(0, 0, 0, 0.12);
     border-radius: 8px;
     flex: auto;
@@ -268,10 +331,10 @@
     color: #424242;
 }
 
-.citationPanelDismiss:hover {
-    background-color: #D1D1D1;
-    cursor: pointer;
-}
+    .citationPanelDismiss:hover {
+        background-color: #D1D1D1;
+        cursor: pointer;
+    }
 
 .citationPanelTitle {
     font-style: normal;
@@ -281,12 +344,12 @@
     color: #323130;
     margin-top: 12px;
     margin-bottom: 12px;
-} 
-
-.citationPanelTitle:hover {
-    text-decoration: underline;
-    cursor: pointer;
 }
+
+    .citationPanelTitle:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
 
 .citationPanelContent {
     font-style: normal;
@@ -298,7 +361,7 @@
     order: 1;
     align-self: stretch;
     flex-grow: 0;
-} 
+}
 
 a {
     padding-left: 5px;
@@ -319,7 +382,7 @@ a {
     border-radius: 4px;
 }
 
-.viewSourceButton:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
+    .viewSourceButton:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }

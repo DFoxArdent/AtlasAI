@@ -10,7 +10,7 @@ import { isEmpty } from "lodash-es";
 import DOMPurify from 'dompurify';
 
 import styles from "./Chat.module.css";
-import Contoso from "../../assets/Contoso.svg";
+import Contoso from "../../assets/Ardent A.svg";
 import { XSSAllowTags } from "../../constants/xssAllowTags";
 
 import {
@@ -78,7 +78,7 @@ const Chat = () => {
             && appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured
             && appStateContext?.state.chatHistoryLoadingState === ChatHistoryLoadingState.Fail 
             && hideErrorDialog) {
-            let subtitle = `${appStateContext.state.isCosmosDBAvailable.status}. Please contact the site administrator.`
+            let subtitle = `${appStateContext.state.isCosmosDBAvailable.status}. Please contact the Digital Solutions team.`
             setErrorMsg({
                 title: "Chat history is not enabled",
                 subtitle: subtitle
@@ -231,7 +231,7 @@ const Chat = () => {
 
         } catch (e) {
             if (!abortController.signal.aborted) {
-                let errorMessage = "An error occurred. Please try again. If the problem persists, please contact the site administrator.";
+                let errorMessage = "An error occurred. Please try again. If the problem persists, please contact the Digital Solutions team.";
                 if (result.error?.message) {
                     errorMessage = result.error.message;
                 }
@@ -301,7 +301,7 @@ const Chat = () => {
             const response = conversationId ? await historyGenerate(request, abortController.signal, conversationId) : await historyGenerate(request, abortController.signal);
             if (!response?.ok) {
                 const responseJson = await response.json();
-                var errorResponseMessage = responseJson.error === undefined ? "Please try again. If the problem persists, please contact the site administrator." : responseJson.error;
+                var errorResponseMessage = responseJson.error === undefined ? "Please try again. If the problem persists, please contact the Digital Solutions team." : responseJson.error;
                 let errorChatMsg: ChatMessage = {
                     id: uuid(),
                     role: ERROR,
@@ -474,24 +474,30 @@ const Chat = () => {
     }
 
     const clearChat = async () => {
-        setClearingChat(true)
+        // Confirmation dialog
+        const confirmClear = window.confirm("Are you sure you want to clear the chat history? This action cannot be undone.");
+        if (!confirmClear) {
+            return; // Stop the function if user cancels
+        }
+
+        setClearingChat(true);
         if (appStateContext?.state.currentChat?.id && appStateContext?.state.isCosmosDBAvailable.cosmosDB) {
-            let response = await historyClear(appStateContext?.state.currentChat.id)
+            let response = await historyClear(appStateContext?.state.currentChat.id);
             if (!response.ok) {
                 setErrorMsg({
                     title: "Error clearing current chat",
-                    subtitle: "Please try again. If the problem persists, please contact the site administrator.",
-                })
+                    subtitle: "Please try again. If the problem persists, please contact the Digital Solutions team.",
+                });
                 toggleErrorDialog();
             } else {
                 appStateContext?.dispatch({ type: 'DELETE_CURRENT_CHAT_MESSAGES', payload: appStateContext?.state.currentChat.id });
                 appStateContext?.dispatch({ type: 'UPDATE_CHAT_HISTORY', payload: appStateContext?.state.currentChat });
                 setActiveCitation(undefined);
                 setIsCitationPanelOpen(false);
-                setMessages([])
+                setMessages([]);
             }
         }
-        setClearingChat(false)
+        setClearingChat(false);
     };
 
     const newChat = () => {
@@ -532,7 +538,7 @@ const Chat = () => {
                 saveToDB(appStateContext.state.currentChat.messages, appStateContext.state.currentChat.id)
                     .then((res) => {
                         if (!res.ok) {
-                            let errorMessage = "An error occurred. Answers can't be saved at this time. If the problem persists, please contact the site administrator.";
+                            let errorMessage = "An error occurred. Answers can't be saved at this time. If the problem persists, please contact the Digital Solutions team.";
                             let errorChatMsg: ChatMessage = {
                                 id: uuid(),
                                 role: ERROR,
@@ -628,8 +634,8 @@ const Chat = () => {
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
-                                <h1 className={styles.chatEmptyStateTitle}>Start chatting</h1>
-                                <h2 className={styles.chatEmptyStateSubtitle}>This chatbot is configured to answer your questions</h2>
+                                <h1 className={styles.chatEmptyStateTitle}>Welcome to Atlas AI</h1>
+                                <h2 className={styles.chatEmptyStateSubtitle}>This chatbot is configured with addtional knowledge about Ardent Management</h2>
                             </Stack>
                         ) : (
                             <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? "40px" : "0px" }} role="log">

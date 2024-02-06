@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'ardentaiuat'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CBDD7697EFA143A3923A3F1A53B82901 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_45C0B5F63C5D4E879F70505157F26A40 }}

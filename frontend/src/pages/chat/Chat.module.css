@@ -87,6 +87,7 @@
 }
 
 .chatMessageUserMessage {
+    display: flex;
     padding: 15px;
     background: #E2FDF5;
     border-radius: 8px;
@@ -96,12 +97,11 @@
     font-size: 14px;
     line-height: 22px;
     color: #242424;
-    flex: none;
     order: 0;
     flex-grow: 0;
     white-space: pre-wrap;
     word-wrap: break-word;
-    max-width: 800px;
+    max-width: 80%;
     border: 1px solid #031C31; /* Added border */
 }
 

@@ -38,7 +38,7 @@ export function ChatHistoryPanel(props: ChatHistoryPanelProps) {
         type: DialogType.close,
         title: !clearingError? 'Are you sure you want to clear all chat history?' : 'Error deleting all of chat history',
         closeButtonAriaLabel: 'Close',
-        subText: !clearingError ? 'All chat history will be permanently removed.' : 'Please try again. If the problem persists, please contact the site administrator.',
+        subText: !clearingError ? 'All chat history will be permanently removed.' : 'Please try again. If the problem persists, please contact the Digital Solutions team.',
     };
     
     const modalProps = {

@@ -3,10 +3,14 @@
     src: url('assets/Alaska-VF.ttf') format('truetype');
 }
 
-* {
+/* Reset default styling and use border-box sizing for all elements */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+/* Base styles for the html and body */
 html,
 body {
     height: 100%;
@@ -14,6 +18,7 @@ body {
     padding: 0;
 }
 
+/* Set a background color and font settings for the entire page */
 html {
     background: #f2f2f2;
     font-family: 'Alaska', sans-serif;
@@ -21,6 +26,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Ensure that the root div takes up the full height of the page */
 #root {
     height: 100%;
 }
